@@ -4,7 +4,7 @@
 
 使用关键字def来告诉Python你要定义一个函数。向Python指出函数名，还可能在括号内指出函数为完成任务需要什么样的参数。最后，定义以冒号结尾。
 
-```
+```python
 def function_name( para ):
 	"""
 	docstring
@@ -36,13 +36,13 @@ def后边的所有缩进构成了函数体。三个引号括起来的叫文档�
 
 使用位置实参来调用函数时，调用者需要知道函数定义中的形式参数的顺序信息，依次按顺序传入形参要求的格式及意义的实参，否则如果实参的顺醋不正确，函数会发生意料之外的执行。
 
-```
+```python
 def function_1(para_1, para_2):
 	do something
 	return
 ```
 
-```
+```python
 #位置实参调用
 function_1(a,b)
 ```
@@ -51,7 +51,7 @@ function_1(a,b)
 
 关键字实参是传递给函数的名称-值对。关键字实参无需考虑函数调用中的实参顺序，还清楚的指出了函数调用中各个值的用途。
 
-```
+```python
 #关键字实参调用 以下两种调用等效
 function_1(para_1 = a, para_2 = b)
 function_1(para_2 = b, para_1 = a)
@@ -63,16 +63,28 @@ function_1(para_2 = b, para_1 = a)
 
 使用默认值时，在形参列表中必须先列出没有默认值的形参，再列出有默认值的形参。这让Python依然能够正确的解读位置实参。
 
-```
+```python
 def function_2(para_1, para_2 = b):
 	do something
 	return
 ```
 
-```
+```python
 #默认值参数调用
 function_2(a)
 function_2(a, c)
+```
+
+##### 为函数的参数指定类型
+
+如果在编写函数时，明确知道函数参数的类型，则应该尽可能的指明参数类型，以增加代码的可读性。
+
+参数的类型在参数之后说明，并使用冒号 ： 分开。
+
+```python
+def function_3(para_1:List[int], para_2:int):
+	do something
+	return
 ```
 
 
@@ -87,13 +99,23 @@ function_2(a, c)
 
 函数还可以依顺序返回多个值。
 
+```python
+def function_4():
+	do something
+	return var_1, var_2
+
+var1, var2 = function_4()
 ```
-def function_3():
+
+如果函数有明确的返回值类型，那么在定义函数时应该声明返回值类型以增强代码的可读性。
+
+声明返回值类型使用 -> 在参数之后。
+
+```python
+def function_4() -> int,int:
 	do something
 	return var_1, var_2
 ```
-
-
 
 ### 传递列表
 
@@ -109,8 +131,8 @@ def function_3():
 
 如果你预先不知道函数需要接收多少个实参，则参数使用星号让Python创建一个元组，并将收到的所有值都封装到这个元组中。
 
-```
-def function_4( *para ):
+```python
+def function_5( *para ):
 	do something
 	return
 ```
@@ -121,8 +143,8 @@ Python创建一个元组名为参数名的元组，将实参封装到元组中�
 
 如果让函数接收不同类型的实参，必须在函数定义中将接纳任意数量实参的形参放在最后。Python先匹配位置参数和关键字实参，再将余下的实参都收集到最后一个形参中。
 
-```
-def function_5( para_1, *para):
+```python
+def function_6( para_1, *para):
 	do something
 	return
 ```
@@ -131,7 +153,7 @@ def function_5( para_1, *para):
 
 有时候，需要接受任意数量的实参，但预先不知道传递给函数的会是什么样的信息。在这种情况下，可将函数编写成能够接受任意数量的键值对------调用语句提供了多少就接收多少。
 
-```
+```python
 def function_6(para_1, **para):
 	do something
 	return
@@ -149,7 +171,7 @@ def function_6(para_1, **para):
 
 使用 import 语句导入指定模块，导入后可以使用改模块中的所有函数。格式为模块名+函数名。
 
-```
+```python
 import module_name
 
 module_name.function_name()
@@ -157,20 +179,20 @@ module_name.function_name()
 
 ##### 导入特定函数
 
-```
+```python
 from module_name import function_1, function_2, function_3
 ```
 
 ##### 使用 as 指定别名
 
-```
+```python
 from module_name import function_name as fn
 import module_name as mn
 ```
 
 ##### 导入模块中的所有函数
 
-```
+```python
 from module_name import *
 ```
 
